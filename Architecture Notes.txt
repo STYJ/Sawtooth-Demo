@@ -1,0 +1,15 @@
+Merkle Tree - Hash tree where each node is made up of the hash of its child node.
+
+Radix Addresses - hex encoded 70 character string (35 bytes) where addresses uniquely identifies the path to the leaf nodes in a tree. First 3 bytes represent the namespace (16^6 or 2^24 different possible namespaces in a given instanceo of sawtooth) and the namespace-specific address is 32 bytes that is encoded based on the rules determined by the namespace design.
+
+* Note that namespace designers need to define the mechanism for serialising / deserialising (when the TP does get(address) or set(address, data) function calls) that is deterministic across executions of the transaction, across platforms, and across versions of the serialization framework. 
+
+https://medium.com/@phansnt/data-structure-in-ethereum-episode-3-patricia-trie-b7b0ccddd32f 
+
+At each node, you can have a maximum of 2^8 children because each byte is represented by 8 bit which represents 2 hexadecimal characters. There's a total of 35 bytes per address so it goes to a maximum depth of 35. 
+
+Root - Top node
+Leaf - Node w/ no child 
+Child, Parent, Siblings, Descendant and Ancestor nodes.
+
+https://sawtooth.hyperledger.org/docs/core/releases/1.0.1/architecture/journal.html
