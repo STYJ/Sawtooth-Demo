@@ -1,0 +1,7 @@
+1) When you install sawtooth on ubuntu, all are installed as bins in the /usr/bin dir (which is your path)
+
+2) If you look at the sawtooth-core, under the bin directory, many of the TP's have a corresponding script with the following format 'TPFamilyName-tp-language'. 
+
+In docker, if you set it up correctly, this bin directory will be part of the path as well. So when you run the command say sawtooth intkey-tp-python, it will pick up the file from the bin folder, run whatever is in that file.
+
+3) To run the TP => run the file that runs the code which contains processor.start() to start the TP. If your TP is configured correctly, it should be able to find the validator. For simplewallet, it is under pyprocessor->simplewallet-tp.py (which imports another file and calls the main function in that file which calls processor.start())
