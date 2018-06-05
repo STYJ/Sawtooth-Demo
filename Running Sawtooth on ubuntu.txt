@@ -8,22 +8,21 @@
 
 # Starting the validator
 4. sudo sawadm keygen - generate keys for validator
-5. sudo -u sawtooth sawtooth-validator -vv --bind network:192.168.2.241:8800 --bind component:192.168.2.241:4004
+5. sudo -u sawtooth sawtooth-validator -vv --bind network:IP:8800 --bind component:IP:4004
 
 # Connect REST API component and expose ports 8008 for client to connect.
-sudo -u sawtooth sawtooth-rest-api -v -C tcp://192.168.2.241:4004 --bind 192.168.2.241:8080
+6. sudo -u sawtooth sawtooth-rest-api -v -C tcp://IP:4004 --bind IP:8080
 
-# Connect intkey TP and settings TP
-sudo -u sawtooth intkey-tp-python -v -C tcp://192.168.2.241:4004
-sudo -u sawtooth settings-tp -v -C tcp://192.168.2.241:4004
-sudo -u sawtooth xo-tp-python -v -C tcp://192.168.2.241:4004
+# Connect intkey TP and settings TP (when you start the validator for the first time with no prior data, you need to connect the settings TP)
+7. sudo -u sawtooth intkey-tp-python -v -C tcp://IP:4004
+8. sudo -u sawtooth settings-tp -v -C tcp://IP:4004
+9. sudo -u sawtooth xo-tp-python -v -C tcp://IP:4004
 
 
 # Updating list of supported TP on the on-chain settings 
 sawset proposal create sawtooth.validator.transaction_families='[{"family": "intkey", "version": "1.0"}, {"family":"sawtooth_settings", "version":"1.0"}]'
 
 # Send intkey transactions
-intkey set first 1 --url=192.168.2.241:8080
-
+intkey set first 1 --url=IP:8080
 
 # Ctrl + C several times / once to stop the validators / components
